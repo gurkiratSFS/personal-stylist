@@ -24,8 +24,8 @@ export const APP_NAV_ITEMS: readonly {
   icon: LucideIcon;
 }[] = [
   { href: "/home", label: "Home", available: true, icon: Home },
-  { href: "/analyze", label: "Outfit Analyzer", available: false, icon: ScanSearch },
-  { href: "/wardrobe", label: "My Wardrobe", available: false, icon: Shirt },
+  { href: "/analyze", label: "Outfit Analyzer", available: true, icon: ScanSearch },
+  { href: "/wardrobe", label: "My Wardrobe", available: true, icon: Shirt },
   { href: "/discover", label: "Discover", available: false, icon: Compass },
   { href: "/grooming", label: "Grooming", available: false, icon: Scissors },
   { href: "/shopping", label: "Shopping", available: false, icon: ShoppingBag },

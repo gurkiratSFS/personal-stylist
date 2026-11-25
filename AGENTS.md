@@ -19,8 +19,8 @@ Each phase ships a complete user-facing slice: migrations, row-level security, s
 0. Foundation — Supabase CLI, Jest, Zod, shadcn/ui, env docs, app shell.
 1. Account and home — register, login, password recovery, profile preferences, marketing site, split auth, app sidebar navigation.
 2. Style profile — progressive onboarding, preferences, private photos, editable Style DNA (Done).
-3. Outfit analyzer — upload, validated structured AI feedback, saved analyses.
-4. Wardrobe — items, combinations from real clothes, saved looks, calendar.
+3. Outfit analyzer — upload, validated structured AI feedback, saved analyses (Done).
+4. Wardrobe — items, AI categorize, manual + AI combinations, favorites, calendar (Done).
 5. Color analysis — palette from a photo, user corrections.
 6. Grooming studio — hair, beard, and routine guidance. No medical diagnosis.
 7. Habits — challenges, reminders, streaks, achievements.

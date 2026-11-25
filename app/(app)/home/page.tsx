@@ -25,7 +25,7 @@ const journeys = [
   },
   {
     title: "Build your wardrobe",
-    body: "Catalog pieces you own and create combinations from real clothes.",
+    body: "Upload pieces, auto-categorize them, and generate outfits from clothes you own.",
     href: "/wardrobe",
     cta: "Open wardrobe",
     image: "/images/preview-wardrobe-ui.jpg",

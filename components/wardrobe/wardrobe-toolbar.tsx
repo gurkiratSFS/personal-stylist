@@ -1,0 +1,94 @@
+"use client";
+
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useId } from "react";
+import { X } from "lucide-react";
+
+import { WardrobeItemUploader } from "@/components/wardrobe/item-uploader";
+import { Button } from "@/components/ui/button";
+
+export function WardrobeToolbar({ visionReady }: { visionReady: boolean }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const open = searchParams.get("new") === "1";
+  const titleId = useId();
+
+  function openModal() {
+    router.replace("/wardrobe?new=1", { scroll: false });
+  }
+
+  function closeModal() {
+    router.replace("/wardrobe", { scroll: false });
+  }
+
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        router.replace("/wardrobe", { scroll: false });
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previous;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open, router]);
+
+  return (
+    <>
+      <Button type="button" onClick={openModal} className="w-full sm:w-auto">
+        Add a piece
+      </Button>
+
+      {open ? (
+        <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-6">
+          <button
+            type="button"
+            className="absolute inset-0 bg-ink/50"
+            aria-label="Close add item dialog"
+            onClick={closeModal}
+          />
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={titleId}
+            className="relative z-10 flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-[1.5rem] border border-border bg-background shadow-xl sm:rounded-[1.5rem]"
+          >
+            <div className="flex items-start justify-between gap-3 border-b border-border px-5 py-4">
+              <div>
+                <p className="text-xs tracking-[0.18em] text-accent uppercase">
+                  Digital wardrobe
+                </p>
+                <h2
+                  id={titleId}
+                  className="mt-1 font-display text-2xl tracking-tight"
+                >
+                  Add clothing pieces
+                </h2>
+              </div>
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                className="h-10 w-10 px-0"
+                aria-label="Close"
+                onClick={closeModal}
+              >
+                <X className="size-4" />
+              </Button>
+            </div>
+            <div className="overflow-y-auto px-5 py-5">
+              <WardrobeItemUploader
+                visionReady={visionReady}
+                onComplete={closeModal}
+              />
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </>
+  );
+}
